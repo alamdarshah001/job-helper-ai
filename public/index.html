@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B1020">
+
+    <title>Job Helper | AI Career Assistant</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="#" class="brand">
+            <span class="brand-icon">💼</span>
+            <span>Job<span class="purple">Helper</span></span>
+        </a>
+
+        <div class="nav-badge">
+            <span class="status-dot"></span>
+            Career Assistant
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="eyebrow">
+                <span>✦</span> YOUR CAREER, YOUR FUTURE
+            </div>
+
+            <h1>Land Your <span>Dream Job.</span></h1>
+
+            <p class="hero-description">
+                Discover how well your CV matches your dream role.
+                Identify missing skills and take the next step in your career.
+            </p>
+            <div class="hero-stats">
+                <div>
+                    <span>Upload your CV</span>
+                </div>
+                <div>
+                    <span>Add job details</span>
+                </div>
+                <div>
+                    <span>Get your results</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analyzer Section -->
+        <section class="analyzer" id="analyzer">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">YOUR CAREER TOOLKIT</span>
+                    <h2>Let's analyze your CV</h2>
+                    <p>Fill in both fields to get your personalized report.</p>
+                </div>
+
+                <span class="secure-badge">✦ Smart Analysis</span>
+            </div>
+
+            <div class="input-grid">
+
+                <!-- CV Card -->
+                <article class="input-card">
+                    <div class="card-heading">
+                        <div class="card-icon">📄</div>
+                        <div>
+                            <h3>Your CV</h3>
+                            <p>Your experience, skills and education</p>
+                        </div>
+                    </div>
+
+                    <label for="cv">Paste your CV below</label>
+
+                    <textarea
+                        id="cv"
+                        placeholder="Example:&#10;&#10;Frontend Developer&#10;Skills: HTML, CSS, JavaScript, React&#10;Experience: Built responsive websites..."
+                        required
+                    ></textarea>
+
+                    <div class="field-footer">
+                        <span>✎ Paste your CV text</span>
+                        <span id="cv-count">0 characters</span>
+                    </div>
+                </article>
+
+                <!-- Job Description Card -->
+                <article class="input-card">
+                    <div class="card-heading">
+                        <div class="card-icon job-icon">🎯</div>
+                        <div>
+                            <h3>Job Description</h3>
+                            <p>Requirements of your target role</p>
+                        </div>
+                    </div>
+
+                    <label for="jd">Paste the job description</label>
+
+                    <textarea
+                        id="jd"
+                        placeholder="Example:&#10;&#10;We are looking for a Frontend Developer with HTML, CSS, JavaScript, React and Git skills..."
+                        required
+                    ></textarea>
+
+                    <div class="field-footer">
+                        <span>✎ Paste job requirements</span>
+                        <span id="jd-count">0 characters</span>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="analyze-action">
+                <button id="btn" type="button">
+                    Analyze My CV
+                    <span class="button-arrow">→</span>
+                </button>
+
+                <p>Your CV text is sent to an AI service to generate the report.</p>
+                <p id="error-msg" style="color:#f87171; font-size:12px;"></p>
+            </div>
+
+            <!-- Results -->
+            <section class="results-card" id="results-section" aria-live="polite" hidden>
+
+                <div class="results-header">
+                    <div>
+                        <span class="section-label">YOUR PERSONAL REPORT</span>
+                        <h2>Analysis Results</h2>
+                        <p>Here is how your CV compares with the job description.</p>
+                    </div>
+                    <span class="result-icon">✦</span>
+                </div>
+
+                <div class="score-layout">
+                    <div class="score-box">
+                        <div class="score-ring" id="score-ring">
+                            <div class="score-inner">
+                                <strong id="match-score">0%</strong>
+                                <span>Match score</span>
+                            </div>
+                        </div>
+                        <p id="score-message">Your results will appear here.</p>
+                    </div>
+
+                    <div class="score-details">
+                        <div class="metric">
+                            <div class="metric-icon green">✓</div>
+                            <div>
+                                <span>Matched keywords</span>
+                                <strong id="matched-count">0</strong>
+                            </div>
+                        </div>
+
+                        <div class="metric">
+                            <div class="metric-icon yellow">!</div>
+                            <div>
+                                <span>Potential missing keywords</span>
+                                <strong id="missing-count">0</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-grid">
+                    <div class="report-box">
+                        <h3>✓ Matched Skills & Keywords</h3>
+                        <div id="matched-skills" class="skill-list"></div>
+                    </div>
+
+                    <div class="report-box">
+                        <h3>＋ Skills to Review</h3>
+                        <div id="missing-skills" class="skill-list"></div>
+                    </div>
+                </div>
+
+                <div class="recommendations">
+                    <h3>✦ Recommendations</h3>
+                    <ul id="recommendations-list"></ul>
+                </div>
+
+                <div class="recommendations">
+                    <h3>✦ Cover Letter Draft</h3>
+                    <pre id="cover-letter" style="white-space: pre-wrap; font-family: inherit; margin: 0; color: #C3CDE0; font-size: 12px; line-height: 1.8;"></pre>
+                </div>
+
+                <p class="disclaimer">
+                    This report is generated by an AI model and is only an estimate.
+                    Review the results before editing your CV.
+                </p>
+
+            </section>
+
+        </section>
+
+        <!-- Bottom Information -->
+        <section class="bottom-note">
+            <div class="bottom-icon">🚀</div>
+            <div>
+                <h3>Your next opportunity starts here.</h3>
+                <p>Use the report to improve your CV and highlight relevant experience.</p>
+            </div>
+        </section>
+
+        <footer>
+            <a href="#" class="footer-brand">Job<span class="purple">Helper</span></a>
+            <p>Built to help you move forward in your career.</p>
+            <span>© 2026 Job Helper</span>
+        </footer>
+
+    </main>
+
+</body>
+</html>
