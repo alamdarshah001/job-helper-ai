@@ -10,6 +10,43 @@ function updateCount(input, counterId) {
 cvInput.addEventListener("input", () => updateCount(cvInput, "cv-count"));
 jdInput.addEventListener("input", () => updateCount(jdInput, "jd-count"));
 
+const fileInput = document.getElementById("cv-file");
+const fileStatus = document.getElementById("file-status");
+
+fileInput.addEventListener("change", async () => {
+  const file = fileInput.files[0];
+  if (!file) return;
+
+  if (file.type !== "application/pdf") {
+    fileStatus.textContent = "Select only PDF file.";
+    fileInput.value = "";
+    return;
+  }
+
+  fileStatus.textContent = "I’m reading the PDF...";
+
+  const formData = new FormData();
+  formData.append("cvFile", file);
+
+  try {
+    const response = await fetch("/extract-cv", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "I could not read the PDF.");
+    }
+
+    cvInput.value = data.text;
+    updateCount(cvInput, "cv-count");
+    fileStatus.textContent = "✓ " + file.name + " I’ve extracted the text. Please check it below.";
+  } catch (err) {
+    fileStatus.textContent = err.message;
+  }
+});
+
 function fillList(containerId, items, tag, className, emptyText) {
   const box = document.getElementById(containerId);
   box.innerHTML = "";
@@ -69,7 +106,7 @@ btn.addEventListener("click", async () => {
   }
 
   btn.disabled = true;
-  btn.textContent = "Soch raha hun... (10-30 second)";
+  btn.textContent = "Please Wait... (10-30 second)";
 
   try {
     const response = await fetch("/analyze", {

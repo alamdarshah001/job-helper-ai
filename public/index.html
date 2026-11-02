@@ -73,27 +73,41 @@
 
                 <!-- CV Card -->
                 <article class="input-card">
-                    <div class="card-heading">
-                        <div class="card-icon">📄</div>
-                        <div>
-                            <h3>Your CV</h3>
-                            <p>Your experience, skills and education</p>
-                        </div>
-                    </div>
+                <div class="card-heading">
+                <div class="card-icon">📄</div>
+                <div>
+                     <h3>Your CV</h3>
+                     <p>Upload a PDF or paste the text</p>
+                </div>
+              </div>
 
-                    <label for="cv">Paste your CV below</label>
+              <label for="cv-file">Upload your CV (PDF, max 5MB)</label>
+    
+              <input type="file" id="cv-file" accept="application/pdf">
+    
+              <p id="file-status">Or paste the text directly below.</p>
 
-                    <textarea
-                        id="cv"
-                        placeholder="Example:&#10;&#10;Frontend Developer&#10;Skills: HTML, CSS, JavaScript, React&#10;Experience: Built responsive websites..."
-                        required
-                    ></textarea>
+              <label for="cv">CV text (You can review or edit it here)</label>
 
-                    <div class="field-footer">
-                        <span>✎ Paste your CV text</span>
-                        <span id="cv-count">0 characters</span>
-                    </div>
-                </article>
+              <textarea
+
+              id="cv"
+
+              placeholder="Example:&#10;&#10;Frontend Developer&#10;Skills: HTML, CSS, JavaScript, React&#10;Experience: Built responsive websites..."
+
+              required
+
+              ></textarea>
+
+
+
+              <div class="field-footer">
+
+                <span>The text will be filled in automatically from the PDF.</span>
+
+                <span id="cv-count">0 characters</span>
+            </div>
+        </article>
 
                 <!-- Job Description Card -->
                 <article class="input-card">

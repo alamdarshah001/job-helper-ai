@@ -272,7 +272,7 @@ a {
 
 .input-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 20px;
 }
 
@@ -828,4 +828,33 @@ footer > span {
         flex-direction: column;
         align-items: flex-start;
     }
+}
+#cv-file {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px dashed #49377E;
+    border-radius: 10px;
+    background: #0B1020;
+    color: var(--muted);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#cv-file::file-selector-button {
+    margin-right: 12px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 7px;
+    background: #2B2250;
+    color: #C4B5FD;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#file-status {
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 11px;
 }
