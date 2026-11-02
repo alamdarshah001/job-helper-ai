@@ -100,7 +100,7 @@ ${jobDescription}`;
 
     if (!apiResponse.ok) {
       console.log(data);
-      return res.status(500).json({ error: "AI se jawab nahi aaya" });
+      return res.status(500).json({ error: "Server busy......" });
     }
 
     const parts = data.candidates?.[0]?.content?.parts || [];
