@@ -4,7 +4,7 @@ An AI-powered web app that compares your CV with a job description and gives you
 
 ## ScreenShot
 
-![HomePage](Image.png)
+![HomePage](./screenshot/Image.png)
 
 ## Features
 - Match score with a visual ring
