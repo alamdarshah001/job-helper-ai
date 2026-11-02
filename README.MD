@@ -2,6 +2,10 @@
 
 An AI-powered web app that compares your CV with a job description and gives you a match score, matched and missing skills, CV improvement tips, and a cover letter draft.
 
+## ScreenShot
+
+![HomePage](Image.png)
+
 ## Features
 - Match score with a visual ring
 - Matched and missing skills
